@@ -85,3 +85,4 @@ def calculate_offsets(args: CalcOffsetArgs) -> None:
                 "gripper close (degrees)      ",
                 np.rad2deg(driver.get_joints()[-1]) - 42,
             )
+        driver.close()
