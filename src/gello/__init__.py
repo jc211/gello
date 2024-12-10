@@ -1,2 +1,2 @@
-from gello.gello import DynamixelRobot
-from gello.get_offset import calculate_offsets, CalcOffsetArgs
+from gello.robot import DynamixelRobot
+from gello.utils import calculate_offsets, CalcOffsetArgs

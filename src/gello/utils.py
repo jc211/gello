@@ -4,7 +4,7 @@ from typing import Tuple
 
 import numpy as np
 
-from .gello import DynamixelDriver
+from gello.driver import DynamixelDriver
 
 
 @dataclass
@@ -12,10 +12,10 @@ class CalcOffsetArgs:
     port: str = "/dev/ttyUSB0"
     """The port that GELLO is connected to."""
 
-    start_joints: Tuple[float, ...] = (0, 0, 0, 0, 0, 0)
+    start_joints: Tuple[float, ...] = (0, 0, 0, -np.pi/2, 0, np.pi/2, np.pi/4)
     """The joint angles that the GELLO is placed in at (in radians)."""
 
-    joint_signs: Tuple[float, ...] = (1, 1, -1, 1, 1, 1)
+    joint_signs: Tuple[float, ...] = (1, -1, 1, 1, 1, -1, 1)
     """The joint angles that the GELLO is placed in at (in radians)."""
 
     gripper: bool = True
