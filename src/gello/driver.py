@@ -62,34 +62,6 @@ class DynamixelDriverProtocol(Protocol):
         """Close the driver."""
 
 
-class FakeDynamixelDriver(DynamixelDriverProtocol):
-    def __init__(self, ids: Sequence[int]):
-        self._ids = ids
-        self._joint_angles = np.zeros(len(ids), dtype=int)
-        self._torque_enabled = False
-
-    def set_joints(self, joint_angles: Sequence[float]):
-        if len(joint_angles) != len(self._ids):
-            raise ValueError(
-                "The length of joint_angles must match the number of servos"
-            )
-        if not self._torque_enabled:
-            raise RuntimeError("Torque must be enabled to set joint angles")
-        self._joint_angles = np.array(joint_angles)
-
-    def torque_enabled(self) -> bool:
-        return self._torque_enabled
-
-    def set_torque_mode(self, enable: bool):
-        self._torque_enabled = enable
-
-    def get_joints(self) -> np.ndarray:
-        return self._joint_angles.copy()
-
-    def close(self):
-        pass
-
-
 class DynamixelDriver(DynamixelDriverProtocol):
     def __init__(
         self, ids: Sequence[int], port: str = "/dev/ttyUSB0", baudrate: int = 57600

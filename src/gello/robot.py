@@ -1,12 +1,10 @@
-import time
-from threading import Event, Lock, Thread
-from typing import Protocol, Sequence, Optional, Tuple
+from typing import Sequence, Optional, Tuple
 
 import numpy as np
 from gello.driver import DynamixelDriverProtocol, DynamixelDriver
 
 class DynamixelRobot:
-    """A class representing a UR robot."""
+    """A class representing a franka robot."""
     def __init__(
         self,
         joint_ids: Sequence[int],
@@ -159,4 +157,4 @@ def main():
     print(r.get_joint_state())
 
 if __name__ == "__main__":
-    main()  # Test the driver
+    main()  # Test the robot
